@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { ConsoleEasterEgg } from "@/components/layout/ConsoleEasterEgg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,12 +29,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scan-lines">
       <body className={`${inter.variable} font-sans antialiased`}>
         <ScrollProgress />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ConsoleEasterEgg />
       </body>
     </html>
   );

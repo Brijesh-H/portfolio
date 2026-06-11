@@ -5,7 +5,6 @@ import {
   Code2,
   Database,
   GitBranch,
-  FlaskConical,
   TestTube,
   Smartphone,
   Terminal,
@@ -27,7 +26,6 @@ import type { Skill } from "@/data/skills";
 const iconMap: Record<string, LucideIcon> = {
   appium: Smartphone,
   playwright: TestTube,
-  selenium: FlaskConical,
   testng: Braces,
   maven: Box,
   xcuites: Smartphone,
@@ -45,7 +43,6 @@ const iconMap: Record<string, LucideIcon> = {
   claude: Atom,
   cline: Cpu,
   mcps: Cloud,
-  tensor: Cpu,
   default: Code2,
 };
 

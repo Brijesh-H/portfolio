@@ -8,12 +8,12 @@ import { useScrollSpy } from "@/hooks/useScrollSpy";
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "#projects" },
+  { label: "Hobbies", href: "#hobbies" },
 ];
 
-const sectionIds = ["about", "skills", "projects", "experience", "contact"];
+const sectionIds = ["about", "skills", "experience", "projects", "hobbies"];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,7 +41,11 @@ export function Navbar() {
           scrolled ? "h-14" : "h-16",
         )}
       >
-        <a href="#" className="text-lg font-bold text-gradient">
+        <a href="#" className="flex items-center gap-2.5 text-lg font-bold text-gradient">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inset-0 rounded-full bg-emerald-400 animate-pulse-dot" />
+            <span className="absolute inset-0 rounded-full bg-emerald-400" />
+          </span>
           Portfolio
         </a>
 

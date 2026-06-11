@@ -4,8 +4,16 @@ import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollBugs } from "./ScrollBugs";
+import { TechParticles } from "@/components/ui/TechParticles";
+import { useTypeWriter } from "@/hooks/useTypeWriter";
 
 export function Hero() {
+  const { displayed: typedText } = useTypeWriter({
+    text: "SDET | Test Automation Engineer",
+    speed: 50,
+    delay: 1200,
+  });
+
   return (
     <section className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-5 sm:px-6">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950/40 via-zinc-950 to-zinc-950" />
@@ -23,6 +31,8 @@ export function Hero() {
         className="absolute top-1/3 right-1/3 -z-10 h-48 w-48 rounded-full bg-pink-500/5 blur-3xl"
         style={{ animation: "float 12s ease-in-out infinite 2s" }}
       />
+
+      <TechParticles />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -42,7 +52,8 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-          className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl text-gradient"
+          data-text="Brijesh H"
+          className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl text-gradient hover:glitch-text transition-all duration-300"
         >
           Brijesh H
         </motion.h1>
@@ -50,9 +61,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-          className="mb-3 text-lg text-zinc-400 sm:text-xl"
+          className="mb-3 text-lg text-zinc-400 sm:text-xl font-mono"
         >
-          SDET | Test Automation Engineer
+          <span>{typedText}</span>
+          <span className="inline-block w-[3px] h-[1em] bg-indigo-400 ml-0.5 align-middle animate-pulse" />
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +79,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
-          className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+          className="flex w-full items-center justify-center"
         >
           <Button
             size="lg"
@@ -76,14 +88,6 @@ export function Hero() {
           >
             View My Work
             <ArrowRight className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="glass"
-            size="lg"
-            className="w-full sm:w-auto"
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-          >
-            Get In Touch
           </Button>
         </motion.div>
       </motion.div>

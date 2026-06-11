@@ -3,12 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, projectCategories } from "@/data/projects";
-import type { ProjectCategory } from "@/data/projects";
+import type { ProjectCategory, Project } from "@/data/projects";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { Modal } from "@/components/ui/Modal";
+import { ProjectModal } from "@/components/ui/ProjectModal";
 import { cn } from "@/lib/utils";
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects =
     activeCategory === "all"
@@ -79,12 +82,21 @@ export function Projects() {
               className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
               {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.title} project={project} index={index} />
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  onSelect={setSelectedProject}
+                />
               ))}
             </motion.div>
           </AnimatePresence>
         )}
       </div>
+
+      <Modal isOpen={!!selectedProject} onClose={() => setSelectedProject(null)}>
+        {selectedProject && <ProjectModal project={selectedProject} />}
+      </Modal>
     </section>
   );
 }

@@ -8,9 +8,20 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    company: "Parallel Loop",
+    role: "SDET",
+    period: "Apr 2026 — Present",
+    description:
+      "Early-stage AI-native startup with a small team. Building and maintaining automation frameworks from scratch to ensure quality across products.",
+    highlights: [
+      "Developing scalable test automation solutions in a fast-paced startup environment",
+      "Collaborating cross-functionally across a small team to improve release quality",
+    ],
+  },
+  {
     company: "SaturnAI",
     role: "SDET",
-    period: "Feb 2026 — Present",
+    period: "Feb 2026 — Apr 2026",
     description:
       "AI solution for Financial Advisory. Building automation frameworks from scratch to ensure quality across Web and API layers.",
     highlights: [
