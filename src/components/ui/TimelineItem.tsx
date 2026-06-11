@@ -22,15 +22,15 @@ export function TimelineItem({ experience, index }: TimelineItemProps) {
         <div className="absolute top-3 h-full w-px bg-gradient-to-b from-indigo-500/50 to-transparent" />
       </div>
       <div className="space-y-2">
-        <div className="flex flex-wrap items-baseline gap-2">
-          <span className="text-xs font-medium text-indigo-400">
-            {experience.period}
-          </span>
-          <span className="text-xs text-zinc-600">— {experience.company}</span>
-        </div>
-        <h3 className="text-lg font-semibold text-zinc-100">
-          {experience.role}
+        <span className="text-xs font-medium text-indigo-400">
+          {experience.period}
+        </span>
+        <h3 className="text-lg font-semibold text-gradient">
+          {experience.company}
         </h3>
+        <p className="text-sm font-medium text-zinc-300 mb-3">
+          {experience.role}
+        </p>
         <p className="text-sm text-zinc-400">
           {experience.description}
         </p>
