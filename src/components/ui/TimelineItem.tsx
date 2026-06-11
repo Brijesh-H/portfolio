@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import type { Experience } from "@/data/experience";
 
 interface TimelineItemProps {
@@ -15,39 +14,33 @@ export function TimelineItem({ experience, index }: TimelineItemProps) {
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
-      className="relative pl-7 sm:pl-8 pb-10 sm:pb-12 last:pb-0"
+      transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+      className="relative pl-8 sm:pl-10 pb-10 sm:pb-12 last:pb-0"
     >
       <div className="absolute left-0 top-1 flex flex-col items-center">
-        <div className="h-3 w-3 rounded-full border-2 border-indigo-500 bg-white dark:bg-zinc-900" />
-        {index > 0 && (
-          <div className="absolute -top-12 h-12 w-px bg-zinc-200 dark:bg-zinc-700" />
-        )}
-        <div className="absolute top-3 h-full w-px bg-zinc-200 dark:bg-zinc-700" />
+        <div className="h-3 w-3 rounded-full bg-indigo-500 ring-4 ring-indigo-500/20 glow-indigo" />
+        <div className="absolute top-3 h-full w-px bg-gradient-to-b from-indigo-500/50 to-transparent" />
       </div>
       <div className="space-y-2">
-        <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
-          {experience.period}
-        </span>
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+        <div className="flex flex-wrap items-baseline gap-2">
+          <span className="text-xs font-medium text-indigo-400">
+            {experience.period}
+          </span>
+          <span className="text-xs text-zinc-600">— {experience.company}</span>
+        </div>
+        <h3 className="text-lg font-semibold text-zinc-100">
           {experience.role}
         </h3>
-        <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-          {experience.company}
-        </p>
-        <p className="text-sm text-zinc-700 dark:text-zinc-400">
+        <p className="text-sm text-zinc-400">
           {experience.description}
         </p>
-        <ul className="space-y-1.5 pt-1">
+        <ul className="space-y-2 pt-1">
           {experience.highlights.map((highlight, i) => (
             <li
               key={i}
-              className={cn(
-                "flex items-start gap-2 text-sm text-zinc-700",
-                "dark:text-zinc-400",
-              )}
+              className="flex items-start gap-2.5 text-sm text-zinc-400"
             >
-              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-indigo-500" />
+              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-indigo-400" />
               {highlight}
             </li>
           ))}

@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, GitFork } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { useTiltEffect } from "@/hooks/useTiltEffect";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -11,39 +13,48 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  const { ref, attachListeners, detachListeners } = useTiltEffect<HTMLDivElement>({
+    maxTilt: 6,
+    scale: 1.01,
+  });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    attachListeners();
+    return () => detachListeners();
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-all hover:border-indigo-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-indigo-700"
+      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+      ref={ref}
+      className="group relative overflow-hidden rounded-2xl glass transition-all duration-300 hover:glow-indigo-lg"
     >
-      <div className="aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-        <div className="flex h-full items-center justify-center text-zinc-400 dark:text-zinc-500">
-          <span className="text-sm font-medium">Screenshot</span>
-        </div>
-      </div>
-      <div className="p-5">
-        <div className="mb-3 flex flex-wrap gap-2">
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative p-5">
+        <div className="mb-3 flex flex-wrap gap-1.5">
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"
+              className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-xs font-medium text-indigo-300 ring-1 ring-indigo-500/20"
             >
               {tag}
             </span>
           ))}
           {project.tags.length > 3 && (
-            <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+            <span className="rounded-full bg-zinc-800 px-2.5 py-0.5 text-xs font-medium text-zinc-500">
               +{project.tags.length - 3}
             </span>
           )}
         </div>
-        <h3 className="mb-1 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+        <h3 className="mb-1.5 text-lg font-semibold text-zinc-100">
           {project.title}
         </h3>
-        <p className="mb-4 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="mb-4 line-clamp-2 text-sm text-zinc-400">
           {project.description}
         </p>
         <div className="flex items-center gap-3">
@@ -53,8 +64,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-700",
-                "dark:text-indigo-400 dark:hover:text-indigo-300",
+                "inline-flex items-center gap-1.5 text-sm font-medium text-indigo-400 transition-colors hover:text-indigo-300",
               )}
             >
               <ExternalLink className="h-4 w-4" />
@@ -67,8 +77,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900",
-                "dark:text-zinc-400 dark:hover:text-zinc-200",
+                "inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-200",
               )}
             >
               <GitFork className="h-4 w-4" />

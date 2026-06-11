@@ -4,7 +4,6 @@ export interface Experience {
   period: string;
   description: string;
   highlights: string[];
-  logo?: string;
 }
 
 export const experiences: Experience[] = [
@@ -20,7 +19,6 @@ export const experiences: Experience[] = [
       "Functional testing of APIs and Web pages using Charles proxy, Postman, Beekeeper Studio and Mixpanel",
       "Leveraging AI tools: Claude, Cline, MCPs and Skills for enhanced productivity",
     ],
-    logo: "/images/company-1.png",
   },
   {
     company: "CRED",
@@ -36,6 +34,5 @@ export const experiences: Experience[] = [
       "Bug tracking and preparing Dashboards using JIRA",
       "Release management: tracking code commits, triggering RC builds, tracking sign-offs and publishing release notes",
     ],
-    logo: "/images/company-2.png",
   },
 ];

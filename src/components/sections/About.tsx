@@ -1,25 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useCountUp } from "@/hooks/useCountUp";
 import { cn } from "@/lib/utils";
 
 const stats = [
-  { label: "Years Experience", value: "5+" },
-  { label: "Companies", value: "2" },
-  { label: "Automation Frameworks", value: "3+" },
-  { label: "Tools & Technologies", value: "15+" },
+  { label: "Years Experience", value: 5, suffix: "+" },
+  { label: "Companies", value: 2 },
+  { label: "Frameworks Built", value: 3, suffix: "+" },
+  { label: "Tools & Tech", value: 15, suffix: "+" },
 ];
+
+function StatCard({ stat, index, inView }: { stat: typeof stats[number]; index: number; inView: boolean }) {
+  const count = useCountUp({ end: stat.value, duration: 2000, start: 0, enabled: inView });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="glass rounded-xl p-4 text-center"
+    >
+      <div className="text-2xl font-bold text-indigo-400">
+        {count}{stat.suffix ?? ""}
+      </div>
+      <div className="mt-1 text-xs text-zinc-500">{stat.label}</div>
+    </motion.div>
+  );
+}
 
 export function About() {
   return (
-    <section id="about" className="py-16 sm:py-24 lg:py-32">
+    <section id="about" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-4 text-sm font-medium text-indigo-600 dark:text-indigo-400"
+          className="mb-4 text-sm font-medium text-indigo-400"
         >
           About Me
         </motion.div>
@@ -30,10 +50,10 @@ export function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="mb-5 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl lg:text-4xl dark:text-zinc-100">
+            <h2 className="mb-5 text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl lg:text-4xl">
               SDET with a passion for quality and automation.
             </h2>
-            <div className="space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-400">
+            <div className="space-y-4 text-base leading-relaxed text-zinc-400">
               <p>
                 SDET with 5 years of experience in mobile, web automation and functional testing,
                 specializing in Appium and Playwright. Experienced in building scalable automation
@@ -59,27 +79,9 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col items-center justify-center"
           >
-            <div className="mb-8 flex h-48 w-48 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-800 sm:h-72 sm:w-72 lg:h-80 lg:w-80">
-              <span className="text-sm font-medium text-zinc-400 dark:text-zinc-600">
-                Photo
-              </span>
-            </div>
             <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className={cn(
-                    "rounded-xl border border-zinc-200 bg-white p-4 text-center shadow-sm",
-                    "dark:border-zinc-800 dark:bg-zinc-900",
-                  )}
-                >
-                  <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-zinc-500 dark:text-zinc-500">
-                    {stat.label}
-                  </div>
-                </div>
+              {stats.map((stat, i) => (
+                <StatCard key={stat.label} stat={stat} index={i} inView={true} />
               ))}
             </div>
           </motion.div>

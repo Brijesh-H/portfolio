@@ -1,8 +1,53 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  Code2,
+  Database,
+  GitBranch,
+  FlaskConical,
+  TestTube,
+  Smartphone,
+  Terminal,
+  FileJson,
+  Cpu,
+  Braces,
+  Server,
+  GitFork,
+  Bug,
+  Workflow,
+  Eye,
+  Box,
+  Atom,
+  Cloud,
+  type LucideIcon,
+} from "lucide-react";
 import type { Skill } from "@/data/skills";
-import { cn } from "@/lib/utils";
+
+const iconMap: Record<string, LucideIcon> = {
+  appium: Smartphone,
+  playwright: TestTube,
+  selenium: FlaskConical,
+  testng: Braces,
+  maven: Box,
+  xcuites: Smartphone,
+  java: Code2,
+  python: Terminal,
+  javascript: FileJson,
+  typescript: Braces,
+  sql: Database,
+  git: GitBranch,
+  github: GitFork,
+  charles: Eye,
+  postman: Server,
+  jira: Bug,
+  mixpanel: Workflow,
+  claude: Atom,
+  cline: Cpu,
+  mcps: Cloud,
+  tensor: Cpu,
+  default: Code2,
+};
 
 interface SkillBadgeProps {
   skill: Skill;
@@ -10,22 +55,17 @@ interface SkillBadgeProps {
 }
 
 export function SkillBadge({ skill, index }: SkillBadgeProps) {
+  const Icon = iconMap[skill.icon] || iconMap.default;
+
   return (
     <motion.span
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-      className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm transition-all",
-        "hover:border-indigo-300 hover:text-indigo-700 hover:shadow-md",
-        "dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
-        "dark:hover:border-indigo-700 dark:hover:text-indigo-300",
-      )}
+      transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+      className="glass glass-hover inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-medium text-zinc-300"
     >
-      <span className="flex h-5 w-5 items-center justify-center rounded bg-indigo-100 text-[10px] font-bold text-indigo-700 dark:bg-zinc-700 dark:text-zinc-300">
-        {skill.icon.slice(0, 2).toUpperCase()}
-      </span>
+      <Icon className="h-4 w-4 text-indigo-400" />
       {skill.name}
     </motion.span>
   );
