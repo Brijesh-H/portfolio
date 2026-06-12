@@ -39,7 +39,7 @@ export function About() {
             </p>
             <p>
               My expertise spans the full testing spectrum — from building
-              enterprise-grade Playwright and Cypress frameworks for web applications
+              enterprise-grade Playwright frameworks for web applications
               to developing cross-platform mobile test suites using Appium and Detox.
               I&apos;m passionate about integrating quality into every stage of the
               development lifecycle, from CI/CD pipelines to production monitoring.

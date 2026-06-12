@@ -26,12 +26,11 @@ export const experiences: Experience[] = [
     startDate: "Apr 2024",
     endDate: "Apr 2026",
     description: [
-      "Automated end-to-end test scenarios using Playwright with TypeScript, increasing test coverage by 40%",
-      "Developed and maintained CI/CD pipelines for mobile applications using GitHub Actions and Firebase App Distribution",
-      "Led regression testing for major product releases, ensuring 99.9% critical path coverage",
-      "Built custom test utilities and reporting frameworks using Allure for comprehensive test analytics",
+      "Automated end-to-end test scenarios using Playwright with TypeScript",
+      "Developed and maintained CI/CD pipelines for mobile applications using GitHub Actions",
+      "Led regression testing for major product releases",
     ],
-    tech: ["Playwright", "Appium", "TypeScript", "GitHub Actions", "Allure"],
+    tech: ["Playwright", "Appium", "TypeScript", "GitHub Actions"],
   },
   {
     company: "CRED",
@@ -39,11 +38,10 @@ export const experiences: Experience[] = [
     startDate: "Sep 2022",
     endDate: "Mar 2024",
     description: [
-      "Designed and implemented scalable test automation frameworks for web and mobile platforms using Cypress and Detox",
-      "Integrated accessibility testing (AXE) into CI/CD pipeline, achieving WCAG 2.1 AA compliance",
+      "Designed and implemented scalable test automation frameworks for web platforms",
       "Collaborated with cross-functional teams to define quality metrics and establish testing best practices",
-      "Reduced production defects by 35% through comprehensive test strategies and QA process improvements",
+      "Reduced production defects through comprehensive test strategies and QA process improvements",
     ],
-    tech: ["Cypress", "Detox", "TypeScript", "AWS", "Docker"],
+    tech: ["TypeScript", "Docker"],
   },
 ];

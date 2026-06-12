@@ -10,7 +10,6 @@ const CATEGORIES = [
   { id: "all", label: "All" },
   { id: "web", label: "Web" },
   { id: "mobile", label: "Mobile" },
-  { id: "ai", label: "AI" },
 ] as const;
 
 export function Projects() {

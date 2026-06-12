@@ -1,29 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { BarChart3, Cloud, Coffee, Container, Database, FileCode, FileText, Flame, Gauge, GitBranch, GitCompareArrows, Layers, LayoutDashboard, Link2, Play, Server, Sigma, Smartphone, Terminal, Zap } from "lucide-react";
+import { Cloud, Container, Database, FileCode, FileText, GitBranch, Play, Server, Smartphone, Terminal } from "lucide-react";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   "play": Play,
-  "layout-dashboard": LayoutDashboard,
   "smartphone": Smartphone,
   "terminal": Terminal,
-  "gauge": Gauge,
   "file-code": FileCode,
   "file-text": FileText,
-  "coffee": Coffee,
   "server": Server,
-  "layers": Layers,
   "container": Container,
   "github": GitBranch,
   "cloud": Cloud,
-  "flame": Flame,
-  "bar-chart-3": BarChart3,
-  "sigma": Sigma,
-  "zap": Zap,
-  "link-2": Link2,
   "database": Database,
-  "pipe": GitCompareArrows,
 };
 
 interface SkillBadgeProps {

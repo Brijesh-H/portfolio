@@ -219,7 +219,7 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          {["Playwright", "TypeScript", "Appium", "Cypress", "Docker"].map(
+          {["Playwright", "TypeScript", "Appium", "Docker"].map(
             (tech) => (
               <span
                 key={tech}
