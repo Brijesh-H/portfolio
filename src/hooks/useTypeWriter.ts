@@ -1,36 +1,33 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
-interface UseTypeWriterOptions {
-  text: string;
-  speed?: number;
-  delay?: number;
-}
-
-export function useTypeWriter({ text, speed = 40, delay = 0 }: UseTypeWriterOptions) {
+export function useTypeWriter(text: string, speed = 50, delay = 500) {
   const [displayed, setDisplayed] = useState("");
-  const [isDone, setIsDone] = useState(false);
-
-  const start = useCallback(() => {
-    let i = 0;
-    setDisplayed("");
-    setIsDone(false);
-    const interval = setInterval(() => {
-      i++;
-      setDisplayed(text.slice(0, i));
-      if (i >= text.length) {
-        clearInterval(interval);
-        setIsDone(true);
-      }
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed]);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(start, delay);
-    return () => clearTimeout(timeout);
-  }, [start, delay]);
+    setDisplayed("");
+    setDone(false);
+    let timeout: ReturnType<typeof setTimeout>;
 
-  return { displayed, isDone };
+    const startTyping = () => {
+      let i = 0;
+      const type = () => {
+        if (i < text.length) {
+          setDisplayed(text.slice(0, i + 1));
+          i++;
+          timeout = setTimeout(type, speed);
+        } else {
+          setDone(true);
+        }
+      };
+      type();
+    };
+
+    timeout = setTimeout(startTyping, delay);
+    return () => clearTimeout(timeout);
+  }, [text, speed, delay]);
+
+  return { displayed, done };
 }

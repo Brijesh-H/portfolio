@@ -2,36 +2,31 @@
 
 import { useState, useEffect } from "react";
 
-export function useScrollSpy(sectionIds: string[], offset = 100) {
+const SECTION_IDS = ["about", "skills", "experience", "projects", "hobbies"];
+
+export function useScrollSpy() {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id);
         }
-      }
-    };
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+    );
 
-    for (const id of sectionIds) {
+    SECTION_IDS.forEach((id) => {
       const el = document.getElementById(id);
-      if (el) {
-        const observer = new IntersectionObserver(handleIntersect, {
-          rootMargin: `-${offset}px 0px -50% 0px`,
-          threshold: 0,
-        });
-        observer.observe(el);
-        observers.push(observer);
-      }
-    }
+      if (el) observer.observe(el);
+    });
 
-    return () => {
-      for (const obs of observers) obs.disconnect();
-    };
-  }, [sectionIds, offset]);
+    return () => observer.disconnect();
+  }, []);
 
   return activeId;
 }

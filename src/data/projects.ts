@@ -1,72 +1,60 @@
-export type ProjectCategory = "all" | "mobile" | "web" | "ai";
-
 export interface Project {
   title: string;
   description: string;
-  longDescription?: string;
-  tags: string[];
-  category: ProjectCategory;
-  liveUrl?: string;
-  githubUrl?: string;
-  highlights?: string[];
+  longDescription: string;
+  highlights: string[];
+  tech: string[];
+  category: "web" | "mobile" | "ai";
+  githubUrl: string;
 }
 
 export const projects: Project[] = [
   {
-    title: "Playwright Automation Framework",
+    title: "Playwright Test Framework",
     description:
-      "Comprehensive Playwright-based automation framework for Web and APIs, built from scratch to improve release confidence and accelerate testing cycles.",
+      "Enterprise-grade end-to-end testing solution with parallel execution, video recording, and CI integration.",
     longDescription:
-      "A comprehensive Playwright-based automation framework built from the ground up for Web and API testing. Features include Page Object Model design pattern, parallel test execution, automated CI/CD integration, detailed reporting with Allure, and cross-browser testing across Chromium, Firefox, and WebKit.",
-    tags: ["Playwright", "TypeScript", "API Testing", "CI/CD"],
+      "A comprehensive Playwright-based test automation framework designed for enterprise web applications. Features include parallel test execution across multiple browsers, automatic video recording of failures, visual regression testing with pixel-level comparison, and seamless CI/CD integration with GitHub Actions. The framework supports data-driven testing, API mocking, and generates rich Allure reports with screenshots and logs.",
+    highlights: [
+      "Parallel execution across Chromium, Firefox, and WebKit",
+      "Auto-retry with smart failure analysis",
+      "Visual regression testing with pixel-diff comparison",
+      "Allure reporting with video replays of failures",
+    ],
+    tech: ["Playwright", "TypeScript", "Allure", "GitHub Actions"],
     category: "web",
-    githubUrl: "https://github.com/Brijesh-H/playwright-framework",
-    highlights: [
-      "Page Object Model design pattern",
-      "Parallel test execution across browsers",
-      "Allure reporting integration",
-      "CI/CD with GitHub Actions",
-      "API testing with request mocking",
-    ],
+    githubUrl: "https://github.com/Brijesh-H",
   },
   {
-    title: "Appium Mobile Test Suite",
+    title: "Appium Mobile Framework",
     description:
-      "Scalable Appium automation framework supporting XCUITest and UiAutomator2 for iOS & Android regression testing across CRED's product suite.",
+      "Cross-platform mobile test automation framework supporting both iOS and Android with cloud device integration.",
     longDescription:
-      "Scalable Appium automation framework supporting both iOS (XCUITest) and Android (UiAutomator2) platforms. Built for CRED's product suite with features like parallel device execution, screenshot comparison, network condition simulation, and comprehensive test reporting integrated with CI/CD pipelines.",
-    tags: ["Appium", "Java", "TestNG", "Maven", "GitHub Actions"],
+      "A robust mobile test automation framework built on Appium 2.0, supporting both iOS and Android platforms. Integrates with BrowserStack for real device cloud testing, supports parallel execution across multiple devices, and includes gesture-based interaction handling. The framework features automatic screenshot capture on failure, network condition simulation, and bi-directional synchronization with test management tools.",
+    highlights: [
+      "Cross-platform support (iOS + Android) from a single codebase",
+      "BrowserStack real device cloud integration",
+      "Gesture and biometric authentication handling",
+      "Network condition simulation for edge case testing",
+    ],
+    tech: ["Appium", "Java", "TestNG", "BrowserStack"],
     category: "mobile",
-    githubUrl: "https://github.com/Brijesh-H/appium-framework",
-    highlights: [
-      "iOS & Android support",
-      "Parallel device execution",
-      "Screenshot comparison",
-      "Network condition simulation",
-      "CI/CD pipeline integration",
-    ],
+    githubUrl: "https://github.com/Brijesh-H",
   },
   {
-    title: "Real-time Object Detection",
+    title: "Object Detection Suite",
     description:
-      "Built real-time object detection system using TensorFlow and OpenCV for video and webcam input. Achieved real-time detection performance with optimized processing pipeline.",
+      "AI-powered visual testing tools using computer vision for UI element detection and layout validation.",
     longDescription:
-      "Real-time object detection system leveraging TensorFlow's pre-trained models and OpenCV for video and webcam input processing. Achieves real-time performance through optimized frame processing and model quantization techniques.",
-    tags: ["Python", "TensorFlow", "OpenCV", "Computer Vision"],
-    category: "ai",
-    githubUrl: "https://github.com/Brijesh-H/object-detection",
+      "An experimental suite leveraging computer vision and deep learning for visual UI testing. Uses a fine-tuned YOLOv8 model for real-time UI element detection and layout validation. Includes tools for automated screenshot comparison, dynamic element detection without DOM dependencies, and regression detection for visual regressions across different screen sizes and resolutions.",
     highlights: [
-      "Real-time video/webcam processing",
-      "TensorFlow pre-trained models",
-      "Optimized processing pipeline",
-      "OpenCV integration",
+      "Fine-tuned YOLOv8 model for UI element detection",
+      "Layout validation across responsive breakpoints",
+      "DOM-independent element detection",
+      "Visual regression detection with ML-based comparison",
     ],
+    tech: ["Python", "TensorFlow", "YOLOv8", "OpenCV"],
+    category: "ai",
+    githubUrl: "https://github.com/Brijesh-H",
   },
-];
-
-export const projectCategories: { key: ProjectCategory; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "mobile", label: "Mobile" },
-  { key: "web", label: "Web" },
-  { key: "ai", label: "AI/ML" },
 ];

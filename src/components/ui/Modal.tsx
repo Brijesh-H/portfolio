@@ -3,15 +3,17 @@
 import { useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ModalProps {
-  isOpen: boolean;
+  open: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-export function Modal({ isOpen, onClose, children }: ModalProps) {
-  const handleEscape = useCallback(
+export function Modal({ open, onClose, children, className }: ModalProps) {
+  const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     },
@@ -19,44 +21,43 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
   );
 
   useEffect(() => {
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
+    if (open) {
+      document.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
     }
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [isOpen, handleEscape]);
+  }, [open, handleKeyDown]);
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
             onClick={onClose}
-            aria-hidden="true"
           />
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto glass rounded-2xl p-6 sm:p-8"
-            role="dialog"
-            aria-modal="true"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className={cn(
+              "relative w-full max-w-2xl max-h-[85vh] overflow-y-auto glass rounded-2xl p-6 sm:p-8 shadow-2xl",
+              className,
+            )}
           >
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800/80 text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-zinc-200"
-              aria-label="Close modal"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-md bg-slate-800/50 text-slate-400 transition-colors hover:bg-slate-700 hover:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </button>
             {children}
           </motion.div>

@@ -2,89 +2,67 @@
 
 import { motion } from "framer-motion";
 import { useCountUp } from "@/hooks/useCountUp";
-import { cn } from "@/lib/utils";
 
 const stats = [
-  { label: "Years Experience", value: 5, suffix: "+" },
-  { label: "Companies", value: 2 },
-  { label: "Frameworks Built", value: 3, suffix: "+" },
-  { label: "Tools & Tech", value: 15, suffix: "+" },
+  { value: 5, label: "Years Experience", suffix: "+" },
+  { value: 100, label: "Automation Scripts", suffix: "+" },
+  { value: 15, label: "Projects Delivered", suffix: "+" },
+  { value: 99, label: "Critical Path Coverage", suffix: "%" },
 ];
 
-function StatCard({ stat, index, inView }: { stat: typeof stats[number]; index: number; inView: boolean }) {
-  const count = useCountUp({ end: stat.value, duration: 2000, start: 0, enabled: inView });
+function StatCard({ value, label, suffix }: { value: number; label: string; suffix: string }) {
+  const { count, ref } = useCountUp(value);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass rounded-xl p-4 text-center"
-    >
-      <div className="text-2xl font-bold text-indigo-400">
-        {count}{stat.suffix ?? ""}
+    <div className="rounded-xl border border-slate-800/60 bg-slate-900/40 p-4 text-center">
+      <div className="mb-1 font-mono text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-400">
+        <span ref={ref}>{count}</span>
+        {suffix}
       </div>
-      <div className="mt-1 text-xs text-zinc-500">{stat.label}</div>
-    </motion.div>
+      <div className="text-xs text-slate-500">{label}</div>
+    </div>
   );
 }
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
+    <section id="about" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-4 text-sm font-medium text-indigo-400"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16 max-w-3xl"
         >
-          About Me
+          <h2 className="mb-4 text-3xl font-bold text-slate-100 sm:text-4xl">
+            About <span className="text-gradient">Me</span>
+          </h2>
+          <div className="space-y-4 text-sm leading-relaxed text-slate-400 sm:text-base">
+            <p>
+              I&apos;m a results-driven Software Development Engineer in Test (SDET) with
+              over 5 years of experience crafting robust test automation frameworks and
+              ensuring software quality at scale.
+            </p>
+            <p>
+              My expertise spans the full testing spectrum — from building
+              enterprise-grade Playwright and Cypress frameworks for web applications
+              to developing cross-platform mobile test suites using Appium and Detox.
+              I&apos;m passionate about integrating quality into every stage of the
+              development lifecycle, from CI/CD pipelines to production monitoring.
+            </p>
+            <p>
+              Currently exploring the intersection of AI and test automation, I
+              believe the future of quality engineering lies in intelligent,
+              self-healing test systems that adapt as fast as the code they verify.
+            </p>
+          </div>
         </motion.div>
-        <div className="grid gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <h2 className="mb-5 text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl lg:text-4xl">
-              SDET with a passion for quality and automation.
-            </h2>
-            <div className="space-y-4 text-base leading-relaxed text-zinc-400">
-              <p>
-                SDET with 5 years of experience in mobile, web automation and functional testing,
-                specializing in Appium and Playwright. Experienced in building scalable automation
-                frameworks, improving regression coverage, and accelerating release cycles through CI/CD.
-              </p>
-              <p>
-                At CRED, I automated critical user flows across iOS & Android apps used by millions,
-                owned the P0 automation suite, and built CI/CD pipelines using GitHub Actions that
-                significantly reduced manual regression effort.
-              </p>
-              <p>
-                Currently at SaturnAI, I&apos;m building a Playwright-based automation framework from
-                scratch for Web and APIs, and exploring AI tools like Claude, Cline, MCPs and Skills
-                to push the boundaries of what&apos;s possible in test automation.
-              </p>
-            </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center justify-center"
-          >
-            <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
-              {stats.map((stat, i) => (
-                <StatCard key={stat.label} stat={stat} index={i} inView={true} />
-              ))}
-            </div>
-          </motion.div>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+          {stats.map((stat) => (
+            <StatCard key={stat.label} {...stat} />
+          ))}
         </div>
       </div>
     </section>

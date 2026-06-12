@@ -1,69 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Code2,
-  Database,
-  GitBranch,
-  TestTube,
-  Smartphone,
-  Terminal,
-  FileJson,
-  Cpu,
-  Braces,
-  Server,
-  GitFork,
-  Bug,
-  Workflow,
-  Eye,
-  Box,
-  Atom,
-  Cloud,
-  type LucideIcon,
-} from "lucide-react";
-import type { Skill } from "@/data/skills";
+import { cn } from "@/lib/utils";
+import { BarChart3, Brain, Cloud, Coffee, Container, Database, FileCode, FileText, Flame, Gauge, GitBranch, GitCompareArrows, Layers, LayoutDashboard, Link2, Monitor, Play, Server, Settings2, Sigma, Smartphone, Terminal, TestTube, Zap } from "lucide-react";
 
-const iconMap: Record<string, LucideIcon> = {
-  appium: Smartphone,
-  playwright: TestTube,
-  testng: Braces,
-  maven: Box,
-  xcuites: Smartphone,
-  java: Code2,
-  python: Terminal,
-  javascript: FileJson,
-  typescript: Braces,
-  sql: Database,
-  git: GitBranch,
-  github: GitFork,
-  charles: Eye,
-  postman: Server,
-  jira: Bug,
-  mixpanel: Workflow,
-  claude: Atom,
-  cline: Cpu,
-  mcps: Cloud,
-  default: Code2,
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  "play": Play,
+  "layout-dashboard": LayoutDashboard,
+  "smartphone": Smartphone,
+  "terminal": Terminal,
+  "gauge": Gauge,
+  "file-code": FileCode,
+  "file-text": FileText,
+  "coffee": Coffee,
+  "server": Server,
+  "layers": Layers,
+  "container": Container,
+  "github": GitBranch,
+  "cloud": Cloud,
+  "flame": Flame,
+  "bar-chart-3": BarChart3,
+  "sigma": Sigma,
+  "zap": Zap,
+  "link-2": Link2,
+  "database": Database,
+  "test-tube": TestTube,
+  "code-2": Monitor,
+  "settings-2": Settings2,
+  "brain": Brain,
+  "pipe": GitCompareArrows,
 };
 
 interface SkillBadgeProps {
-  skill: Skill;
-  index: number;
+  name: string;
+  icon: string;
+  className?: string;
 }
 
-export function SkillBadge({ skill, index }: SkillBadgeProps) {
-  const Icon = iconMap[skill.icon] || iconMap.default;
+export function SkillBadge({ name, icon, className }: SkillBadgeProps) {
+  const Icon = iconMap[icon];
 
   return (
-    <motion.span
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
-      className="glass glass-hover inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-medium text-zinc-300"
+    <div
+      className={cn(
+        "group inline-flex items-center gap-1.5 rounded-md border border-slate-800/60 bg-slate-800/30 px-2.5 py-1 text-xs text-slate-300 transition-all duration-200 hover:border-indigo-500/40 hover:bg-slate-700/50 hover:text-slate-100",
+        className,
+      )}
     >
-      <Icon className="h-4 w-4 text-indigo-400" />
-      {skill.name}
-    </motion.span>
+      {Icon && <Icon className="h-3 w-3 text-indigo-400" />}
+      <span>{name}</span>
+    </div>
   );
 }

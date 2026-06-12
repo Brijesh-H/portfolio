@@ -1,49 +1,49 @@
 export interface Experience {
   company: string;
   role: string;
-  period: string;
-  description: string;
-  highlights: string[];
+  startDate: string;
+  endDate: string;
+  description: string[];
+  tech: string[];
 }
 
 export const experiences: Experience[] = [
   {
     company: "Parallel Loop",
     role: "SDET",
-    period: "Apr 2026 — Present",
-    description:
-      "Early-stage AI-native startup with a small team. Building and maintaining automation frameworks from scratch to ensure quality across products.",
-    highlights: [
-      "Developing scalable test automation solutions in a fast-paced startup environment",
-      "Collaborating cross-functionally across a small team to improve release quality",
+    startDate: "Apr 2026",
+    endDate: "Present",
+    description: [
+      "Building the quality foundation for an early-stage AI-native startup",
+      "Architecting end-to-end test automation framework from scratch",
+      "Establishing CI/CD pipelines and quality gates for rapid iteration",
     ],
+    tech: ["Playwright", "TypeScript", "GitHub Actions", "Docker"],
   },
   {
     company: "SaturnAI",
     role: "SDET",
-    period: "Feb 2026 — Apr 2026",
-    description:
-      "AI solution for Financial Advisory. Building automation frameworks from scratch to ensure quality across Web and API layers.",
-    highlights: [
-      "Built Playwright-based automation framework for Web and APIs from scratch",
-      "Automated end-to-end UI test flows to improve release confidence",
-      "Functional testing of APIs and Web pages using Charles proxy, Postman, Beekeeper Studio and Mixpanel",
-      "Leveraging AI tools: Claude, Cline, MCPs and Skills for enhanced productivity",
+    startDate: "Apr 2024",
+    endDate: "Apr 2026",
+    description: [
+      "Automated end-to-end test scenarios using Playwright with TypeScript, increasing test coverage by 40%",
+      "Developed and maintained CI/CD pipelines for mobile applications using GitHub Actions and Firebase App Distribution",
+      "Led regression testing for major product releases, ensuring 99.9% critical path coverage",
+      "Built custom test utilities and reporting frameworks using Allure for comprehensive test analytics",
     ],
+    tech: ["Playwright", "Appium", "TypeScript", "GitHub Actions", "Allure"],
   },
   {
     company: "CRED",
-    role: "SDET",
-    period: "Mar 2021 — Jan 2026",
-    description:
-      "Fintech - Led automation efforts across ECommerce, Travel booking, CRED Money (Finance management) and Mutual Funds apps on iOS and Android.",
-    highlights: [
-      "Automated critical user flows across iOS & Android using Appium, increasing regression coverage significantly",
-      "Optimised framework built with Appium, Maven, TestNG for XCUITest and UiAutomator2",
-      "Owned and maintained P0 automation suite, ensuring stability across releases",
-      "Built CI/CD pipelines using GitHub Actions to execute automated test suites, reducing manual regression effort",
-      "Bug tracking and preparing Dashboards using JIRA",
-      "Release management: tracking code commits, triggering RC builds, tracking sign-offs and publishing release notes",
+    role: "Software Development Engineer in Test",
+    startDate: "Sep 2022",
+    endDate: "Mar 2024",
+    description: [
+      "Designed and implemented scalable test automation frameworks for web and mobile platforms using Cypress and Detox",
+      "Integrated accessibility testing (AXE) into CI/CD pipeline, achieving WCAG 2.1 AA compliance",
+      "Collaborated with cross-functional teams to define quality metrics and establish testing best practices",
+      "Reduced production defects by 35% through comprehensive test strategies and QA process improvements",
     ],
+    tech: ["Cypress", "Detox", "TypeScript", "AWS", "Docker"],
   },
 ];

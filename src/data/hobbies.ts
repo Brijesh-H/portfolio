@@ -1,23 +1,23 @@
 export interface Hobby {
   title: string;
   description: string;
-  url?: string;
-  urlLabel?: string;
+  link: string;
+  linkLabel: string;
 }
 
 export const hobbies: Hobby[] = [
   {
     title: "Motovlog",
     description:
-      "Sharing rides, road trips, and motorcycle experiences through vlogs. Exploring routes and capturing the journey on two wheels.",
-    url: "https://www.youtube.com/@Brijesh_Ritz",
-    urlLabel: "YouTube Channel",
+      "I ride and record my journeys on YouTube. Join me as I explore roads, share riding tips, and capture the freedom of two wheels.",
+    link: "https://www.youtube.com/@Brijesh_Ritz",
+    linkLabel: "@Brijesh_Ritz",
   },
   {
     title: "Photography",
     description:
-      "Street and travel photography. Capturing candid moments, urban landscapes, and everyday scenes through the lens.",
-    url: "https://www.pexels.com/@brijeshritz",
-    urlLabel: "Pexels Profile",
+      "I capture moments through my lens and share them on Pexels. Free stock photos from my travels and everyday life.",
+    link: "https://www.pexels.com/@brijeshritz",
+    linkLabel: "@brijeshritz",
   },
 ];

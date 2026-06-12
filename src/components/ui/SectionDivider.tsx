@@ -10,8 +10,16 @@ export function SectionDivider() {
         whileInView={{ opacity: 1, scaleX: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="h-px origin-left bg-gradient-to-r from-transparent via-indigo-500/20 via-purple-500/20 to-pink-500/20 to-transparent"
-      />
+        className="relative h-px overflow-hidden bg-slate-800/50"
+      >
+        <motion.div
+          initial={{ x: "-100%" }}
+          whileInView={{ x: "100%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, delay: 0.3, ease: "easeInOut" }}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/40 via-teal-400/40 to-transparent"
+        />
+      </motion.div>
     </div>
   );
 }

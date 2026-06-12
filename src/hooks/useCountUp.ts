@@ -1,38 +1,37 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-interface UseCountUpOptions {
-  end: number;
-  duration?: number;
-  start?: number;
-  enabled?: boolean;
-}
-
-export function useCountUp({ end, duration = 2000, start = 0, enabled = true }: UseCountUpOptions) {
-  const [value, setValue] = useState(start);
-  const frameRef = useRef<number>(0);
+export function useCountUp(target: number, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!enabled) return;
+    const el = ref.current;
+    if (!el || started.current) return;
 
-    const startTime = performance.now();
-    const totalDelta = end - start;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const startTime = Date.now();
+          const tick = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - (1 - progress) * (1 - progress);
+            setCount(Math.floor(eased * target));
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.3 },
+    );
 
-    const animate = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(start + totalDelta * eased));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration]);
 
-      if (progress < 1) {
-        frameRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    frameRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameRef.current);
-  }, [end, duration, start, enabled]);
-
-  return value;
+  return { count, ref };
 }
