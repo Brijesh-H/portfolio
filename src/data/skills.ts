@@ -33,7 +33,7 @@ export const skillCategories: SkillCategory[] = [
     title: "DevOps & Tools",
     icon: "settings-2",
     skills: [
-      { name: "Docker", icon: "container", proficiency: 85 },
+
       { name: "GitHub Actions", icon: "github", proficiency: 88 },
     ],
   },

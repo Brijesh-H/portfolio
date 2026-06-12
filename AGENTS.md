@@ -21,11 +21,12 @@ Deploy: GitHub Pages at `brijesh-h.github.io/portfolio/`
 - **No image placeholders** — never add avatar/photo/illustration placeholders
 - **Font** — Inter via `next/font/google`, `--font-inter` variable
 - **CSS** — Tailwind v4 `@utility` for glass, text-gradient, glow-indigo, etc.
-- **Project order** — Playwright (web), Appium (mobile), Object Detection (ai) — last is lowest priority
+- **Project order** — Playwright (web), Appium (mobile)
+- **NO FAKE DATA** — Every skill, tool, project, metric, and bullet point must come from the resume PDF at `~/Downloads/Brijesh_H_Resume.pdf`. Read it before writing any data files. If something is not in the resume, do not include it. Cross-check ALL data files (`src/data/`, section descriptions, Hero tech badges, About text) for invented content before committing.
 
 ## Section Order
 
-1. Hero (typing subtitle, tech particles, glitch name, floating orbs, scroll bugs, scroll-down arrow)
+1. Hero (typing subtitle, terminal log lines background, glitch name, scroll bugs, scroll-down arrow)
 2. About (bio + stat counters grid)
 3. Skills (categorized badge grid, no tooltips — proficiency field exists in data but unused in UI)
 4. Experience (gradient timeline)
@@ -60,7 +61,7 @@ Deploy: GitHub Pages at `brijesh-h.github.io/portfolio/`
 ## Skills Data
 
 - `src/data/skills.ts` has `proficiency` field on every skill but it's NOT displayed in UI
-- Selenium and TensorFlow were removed from data
+- Skills are only: Playwright, Appium, TypeScript, Python, JavaScript, Node.js, GitHub Actions — nothing else unless confirmed in resume
 
 ## Dead / Removed Features
 
@@ -88,4 +89,4 @@ Push to `main` → GitHub Actions runs `.github/workflows/deploy.yml` → auto-d
 - Modal close button: `h-8 w-8` → should be `h-11 w-11`
 - Category filter buttons: `py-2` → ~30px — needs `py-[11px]`
 - Scroll-down chevron: no explicit sizing — needs container with `min-h-[44px] min-w-[44px]`
-- TechParticles does NOT respect `prefers-reduced-motion` (framer-motion JS animations not covered by CSS media query)
+- TerminalLines component uses framer-motion for text crossfades — not covered by CSS media query

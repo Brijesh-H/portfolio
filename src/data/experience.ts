@@ -18,7 +18,7 @@ export const experiences: Experience[] = [
       "Architecting end-to-end test automation framework from scratch",
       "Establishing CI/CD pipelines and quality gates for rapid iteration",
     ],
-    tech: ["Playwright", "TypeScript", "GitHub Actions", "Docker"],
+    tech: ["Playwright", "TypeScript", "GitHub Actions"],
   },
   {
     company: "SaturnAI",
@@ -42,6 +42,6 @@ export const experiences: Experience[] = [
       "Collaborated with cross-functional teams to define quality metrics and establish testing best practices",
       "Reduced production defects through comprehensive test strategies and QA process improvements",
     ],
-    tech: ["TypeScript", "Docker"],
+    tech: ["TypeScript"],
   },
 ];
