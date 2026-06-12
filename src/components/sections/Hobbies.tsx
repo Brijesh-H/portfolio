@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { hobbies } from "@/data/hobbies";
 import { Camera, Play, ArrowUpRight } from "lucide-react";
 
@@ -13,35 +10,25 @@ export function Hobbies() {
   return (
     <section id="hobbies" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
+        <div className="mb-12">
           <h2 className="text-3xl font-bold text-slate-100 sm:text-4xl">
-            Beyond <span className="text-gradient-warm">the Code</span>
+            Beyond <span className="text-gradient">the Code</span>
           </h2>
           <p className="mt-3 text-sm text-slate-400">
             When I&apos;m not automating tests, you&apos;ll find me doing this.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {hobbies.map((hobby, i) => {
             const Icon = hobbyIcons[hobby.title.toLowerCase()] || Camera;
 
             return (
-              <motion.a
+              <a
                 key={hobby.title}
                 href={hobby.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="group relative overflow-hidden rounded-xl border border-slate-800/60 bg-slate-900/40 p-6 transition-all duration-300 hover:border-indigo-500/30 hover:glow-indigo"
               >
                 <div className="relative z-10 flex items-start gap-4">
@@ -63,7 +50,7 @@ export function Hobbies() {
                     </span>
                   </div>
                 </div>
-              </motion.a>
+              </a>
             );
           })}
         </div>

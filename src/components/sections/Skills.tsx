@@ -1,9 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { skillCategories } from "@/data/skills";
 import { SkillBadge } from "@/components/ui/SkillBadge";
-import { TestTube, Monitor, Settings2, Brain, Code2, Server, Cloud, Zap } from "lucide-react";
+import { TestTube, Settings2, Brain, Code2 } from "lucide-react";
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "test-tube": TestTube,
@@ -16,29 +13,19 @@ export function Skills() {
   return (
     <section id="skills" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
+        <div className="mb-12">
           <h2 className="text-3xl font-bold text-slate-100 sm:text-4xl">
             Skills & <span className="text-gradient">Tools</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {skillCategories.map((category, idx) => {
             const Icon = categoryIcons[category.icon] || Code2;
 
             return (
-              <motion.div
+              <div
                 key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
                 className="group relative rounded-xl border border-slate-800/60 bg-slate-900/40 p-5 transition-all duration-300 hover:border-slate-700/80"
               >
                 <div
@@ -72,7 +59,7 @@ export function Skills() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

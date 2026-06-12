@@ -3,20 +3,13 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTypeWriter } from "@/hooks/useTypeWriter";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, GitBranch, Globe, Mail } from "lucide-react";
 
 type LogType = "shell" | "pass" | "fail" | "retry" | "summary" | "ci" | "info";
 
 interface LogLine {
   text: string;
   type: LogType;
-}
-
-interface ActiveLine {
-  id: number;
-  line: LogLine;
-  x: string;
-  y: string;
 }
 
 const LOG_POOL: LogLine[] = [
@@ -79,8 +72,8 @@ const POSITIONS = [
   { x: "70%", y: "88%" },
 ];
 
-function TerminalLine({ pos }: { pos: (typeof POSITIONS)[number] }) {
-  const [line, setLine] = useState<LogLine>(getRandomLine);
+function TerminalLine({ pos, index }: { pos: (typeof POSITIONS)[number]; index: number }) {
+  const [line, setLine] = useState<LogLine>(LOG_POOL[index % LOG_POOL.length]);
   const intervalRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
   useEffect(() => {
@@ -175,7 +168,7 @@ export function Hero() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         {POSITIONS.map((pos, i) => (
-          <TerminalLine key={i} pos={pos} />
+          <TerminalLine key={i} pos={pos} index={i} />
         ))}
       </div>
 
@@ -184,26 +177,15 @@ export function Hero() {
       <ScrollBugs />
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-slate-700/50 bg-slate-800/30 px-4 py-1.5 text-xs text-slate-500">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-500" />
-            </span>
-            Open to opportunities
-          </div>
-        </motion.div>
+        <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-slate-700/50 bg-slate-800/30 px-4 py-1.5 text-xs text-slate-500">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-500" />
+          </span>
+          Open to opportunities
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="group relative mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
-        >
+        <h1 className="group relative mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
           <span
             data-text="Brijesh H"
             className="glitch-text cursor-default text-slate-100"
@@ -218,14 +200,9 @@ export function Hero() {
           >
             Brijesh H
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-8 h-8"
-        >
+        <div className="mb-8 h-8">
           <span className="text-lg text-slate-400 sm:text-xl">
             {displayed}
             {!done && (
@@ -234,17 +211,50 @@ export function Hero() {
               </span>
             )}
           </span>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mx-auto max-w-xl text-sm leading-relaxed text-slate-500 sm:text-base"
-        >
+        <p className="mx-auto max-w-xl text-sm leading-relaxed text-slate-500 sm:text-base">
           Building robust test automation frameworks, ensuring quality at scale,
           and bridging the gap between development and delivery.
-        </motion.p>
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          {["Playwright", "TypeScript", "Appium", "Cypress", "Docker"].map(
+            (tech) => (
+              <span
+                key={tech}
+                className="rounded-md border border-slate-700/50 bg-slate-800/40 px-3 py-1 text-xs text-slate-500"
+              >
+                {tech}
+              </span>
+            ),
+          )}
+        </div>
+
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <a
+            href="https://github.com/Brijesh-H"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-11 w-11 items-center justify-center rounded-md border border-slate-700/50 bg-slate-800/30 text-slate-500 transition-all hover:border-indigo-500/40 hover:text-indigo-400"
+          >
+            <GitBranch className="h-4 w-4" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/brijesh-h/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-11 w-11 items-center justify-center rounded-md border border-slate-700/50 bg-slate-800/30 text-slate-500 transition-all hover:border-indigo-500/40 hover:text-indigo-400"
+          >
+            <Globe className="h-4 w-4" />
+          </a>
+          <a
+            href="mailto:brijesh.h@outlook.com"
+            className="flex h-11 w-11 items-center justify-center rounded-md border border-slate-700/50 bg-slate-800/30 text-slate-500 transition-all hover:border-indigo-500/40 hover:text-indigo-400"
+          >
+            <Mail className="h-4 w-4" />
+          </a>
+        </div>
       </div>
 
       <motion.div

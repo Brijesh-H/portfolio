@@ -29,7 +29,7 @@ export function StatusBar() {
             </div>
 
             <div className="hidden items-center gap-2 sm:flex">
-              <Clock className="h-3 w-3 text-amber-500" />
+              <Clock className="h-3 w-3 text-teal-500" />
               <span>5+ years experience</span>
             </div>
           </div>

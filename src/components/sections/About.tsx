@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const stats = [
@@ -28,13 +27,7 @@ export function About() {
   return (
     <section id="about" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 max-w-3xl"
-        >
+        <div className="mb-16 max-w-3xl">
           <h2 className="mb-4 text-3xl font-bold text-slate-100 sm:text-4xl">
             About <span className="text-gradient">Me</span>
           </h2>
@@ -57,7 +50,7 @@ export function About() {
               self-healing test systems that adapt as fast as the code they verify.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {stats.map((stat) => (

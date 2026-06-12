@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { BarChart3, Brain, Cloud, Coffee, Container, Database, FileCode, FileText, Flame, Gauge, GitBranch, GitCompareArrows, Layers, LayoutDashboard, Link2, Monitor, Play, Server, Settings2, Sigma, Smartphone, Terminal, TestTube, Zap } from "lucide-react";
+import { BarChart3, Cloud, Coffee, Container, Database, FileCode, FileText, Flame, Gauge, GitBranch, GitCompareArrows, Layers, LayoutDashboard, Link2, Play, Server, Sigma, Smartphone, Terminal, Zap } from "lucide-react";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   "play": Play,
@@ -23,10 +23,6 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   "zap": Zap,
   "link-2": Link2,
   "database": Database,
-  "test-tube": TestTube,
-  "code-2": Monitor,
-  "settings-2": Settings2,
-  "brain": Brain,
   "pipe": GitCompareArrows,
 };
 

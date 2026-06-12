@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { ProjectModal } from "@/components/ui/ProjectModal";
@@ -26,17 +25,11 @@ export function Projects() {
   return (
     <section id="projects" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <h2 className="text-3xl font-bold text-slate-100 sm:text-4xl">
             Featured <span className="text-gradient">Projects</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="mb-8 flex flex-wrap gap-2">
           {CATEGORIES.map(({ id, label }) => (
@@ -55,7 +48,7 @@ export function Projects() {
           ))}
         </div>
 
-        <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project, i) => (
             <ProjectCard
               key={project.title}
@@ -64,7 +57,7 @@ export function Projects() {
               onClick={() => setSelectedProject(project)}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
 
       <ProjectModal

@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TimelineItemProps {
@@ -23,19 +20,13 @@ export function TimelineItem({
   index,
 }: TimelineItemProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
-      className="relative pl-8 sm:pl-10"
-    >
+    <div className="relative pl-8 sm:pl-10">
       <div className="absolute left-0 top-1 flex flex-col items-center">
         <div className="h-3 w-3 rounded-full bg-teal-500 shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
         <div className="mt-1 h-full w-px bg-gradient-to-b from-teal-500/40 to-slate-800" />
       </div>
 
-      <div className="pb-12 last:pb-0">
+      <div className="pb-6 sm:pb-8 last:pb-0">
         <div className="mb-1 flex flex-wrap items-center gap-3">
           <span className="font-mono text-xs text-teal-400/80">
             {startDate} — {endDate}
@@ -69,6 +60,6 @@ export function TimelineItem({
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
